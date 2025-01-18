@@ -1,0 +1,42 @@
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.paragraph {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.link-text {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+.inline-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.inline-link:hover {
+    text-decoration: underline;
+}
+
+.terms-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 1rem 0;
+    line-height: 1.4;
+}

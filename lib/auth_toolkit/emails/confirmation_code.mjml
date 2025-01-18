@@ -1,0 +1,12 @@
+<mj-section>
+  <mj-column>
+    <mj-text font-size="20px" font-weight="bold">Confirmation Code</mj-text>
+    <mj-text>Here's your confirmation code:</mj-text>
+    <%= render_dynamic_component AuthToolkit.Emails.CodeComponent, %{code:
+    @code} %>
+    <mj-text
+      >This code will expire shortly. Please do not share it with
+      anyone.</mj-text
+    >
+  </mj-column>
+</mj-section>

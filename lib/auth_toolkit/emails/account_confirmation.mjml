@@ -1,0 +1,12 @@
+<mj-section>
+  <mj-column>
+    <mj-text font-size="20px" font-weight="bold">Account Confirmation</mj-text>
+    <mj-text>Please use the following code to confirm your account:</mj-text>
+    <%= render_dynamic_component AuthToolkit.Emails.CodeComponent, %{code:
+    @code} %>
+    <mj-text
+      >If you didn't request this confirmation, please ignore this
+      email.</mj-text
+    >
+  </mj-column>
+</mj-section>

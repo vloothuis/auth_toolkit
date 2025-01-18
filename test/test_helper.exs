@@ -1,0 +1,8 @@
+ExUnit.start()
+Mox.defmock(EmailBackendMock, for: AuthToolkit.EmailBackend)
+Mox.defmock(RateLimiterMock, for: AuthToolkit.RateLimiter)
+Application.put_env(:auth_toolkit, :email_backend, EmailBackendMock)
+Application.put_env(:auth_toolkit, :rate_limiter, AuthToolkit.RateLimiter.Stub)
+AuthToolkit.TestRepo.start_link()
+Ecto.Adapters.SQL.Sandbox.mode(AuthToolkit.TestRepo, :manual)
+{:ok, _} = Application.ensure_all_started(:phoenix)

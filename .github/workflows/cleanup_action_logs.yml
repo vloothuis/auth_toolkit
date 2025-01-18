@@ -1,0 +1,55 @@
+name: Cleanup old workflow runs
+
+on:
+  schedule:
+    # Run this workflow at 00:00 on the first day of every month
+    - cron: "0 0 1 * *"
+  workflow_dispatch: # Also allows manual triggering
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Delete old workflow runs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const oneMonthAgo = new Date(new Date().setMonth(new Date().getMonth() - 1));
+
+            let page = 1;
+            let totalRuns = 0;
+
+            while (true) {
+              const workflowRunsResponse = await github.rest.actions.listWorkflowRunsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: 100,
+                page: page,
+              });
+
+              const workflowRuns = workflowRunsResponse.data.workflow_runs;
+              if (workflowRuns.length === 0) {
+                break; // Exit the loop if no more runs are found
+              }
+
+              for (const run of workflowRuns) {
+                const runDate = new Date(run.created_at);
+                if (runDate < oneMonthAgo) {
+                  console.log(`Deleting workflow run: ${run.name} (#${run.id}, created at ${run.created_at})`);
+                  await github.rest.actions.deleteWorkflowRun({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    run_id: run.id,
+                  });
+                }
+              }
+
+              totalRuns += workflowRuns.length;
+              console.log(`Processed page ${page} (${workflowRuns.length} runs), total processed runs: ${totalRuns}`);
+              page++;
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
