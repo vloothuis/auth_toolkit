@@ -1,0 +1,32 @@
+<mjml>
+  <mj-head>
+    <mj-title> @title </mj-title>
+    <mj-attributes>
+      <mj-text font-family="Arial, sans-serif"></mj-text>
+      <mj-section padding="20px"></mj-section>
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="20px" font-weight="bold"
+          >Account Confirmation</mj-text
+        >
+        <mj-text
+          >Please use the following code to confirm your account:</mj-text
+        >
+        <mj-text
+          font-size="32px"
+          font-weight="bold"
+          align="center"
+          color="#4A54F1"
+          >84GXC9</mj-text
+        >
+        <mj-text
+          >If you didn't request this confirmation, please ignore this
+          email.</mj-text
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

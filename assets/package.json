@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "topbar": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0"
+  }
+}
