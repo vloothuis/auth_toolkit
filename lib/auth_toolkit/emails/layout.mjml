@@ -1,0 +1,10 @@
+<mjml>
+  <mj-head>
+    <mj-title> @title </mj-title>
+    <mj-attributes>
+      <mj-text font-family="Arial, sans-serif"></mj-text>
+      <mj-section padding="20px"></mj-section>
+    </mj-attributes>
+  </mj-head>
+  <mj-body> <%= @inner_content %> </mj-body>
+</mjml>
