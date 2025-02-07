@@ -10,6 +10,9 @@ Logger.configure(level: :debug)
 Application.put_env(:auth_toolkit, :endpoint, DemoWeb.Endpoint)
 Application.put_env(:auth_toolkit, :repo, DemoWeb.Repo)
 
+Application.put_env(:auth_toolkit, AuthToolkit.Mailer, adapter: Swoosh.Adapters.Local)
+
+
 Application.put_env(:auth_toolkit, DemoWeb.Repo,
   username: "postgres",
   password: "postgres",
@@ -157,7 +160,7 @@ defmodule DemoWeb.Router do
     plug(:protect_from_forgery)
   end
 
-  AuthToolkitWeb.Routes.routes(scope: "/")
+  AuthToolkitWeb.Routes.routes(scope: "/auth")
 
   scope "/dev" do
     pipe_through(:browser)
@@ -212,7 +215,6 @@ defmodule DemoUtils do
   @moduledoc false
   def migrate do
     Task.async(fn ->
-      dbg(Ecto.Migrator.migrations_path(DemoWeb.Repo))
       Ecto.Migrator.with_repo(DemoWeb.Repo, &Ecto.Migrator.run(&1, :up, all: true))
     end)
   end

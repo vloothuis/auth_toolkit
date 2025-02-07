@@ -13,12 +13,11 @@ defmodule AuthToolkitWeb.UserConfirmationLive do
       </:subtitle>
     </.section_header>
 
-    <p :if={@email_sent} >
-    A new code has been sent.
-    </p>
-
     <.form_box>
-      <p class=" text-center">Enter verification code</p>
+      <p :if={@email_sent} class="success-message">
+        A new code has been sent
+      </p>
+      <p class="text-center">Enter verification code</p>
       <div
         phx-update="ignore"
         phx-hook="CodeEntry"

@@ -87,10 +87,7 @@ defmodule AuthToolkitWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: Application.compile_env(:auth_toolkit, :endpoint),
         router: AuthToolkitWeb.Router
-
-      # statics: AuthToolkit.static_paths()
     end
   end
 
