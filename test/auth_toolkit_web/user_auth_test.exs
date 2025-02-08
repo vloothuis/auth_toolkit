@@ -6,6 +6,8 @@ defmodule AuthToolkitWeb.UserAuthTest do
   alias AuthToolkitWeb.UserAuth
 
   setup %{conn: conn} do
+    start_link_supervised!({Phoenix.PubSub, name: AuthToolkit.PubSub})
+
     conn =
       conn
       |> init_test_session(%{})
@@ -67,6 +69,26 @@ defmodule AuthToolkitWeb.UserAuthTest do
 
       refute conn.halted
       refute conn.status
+    end
+  end
+
+  describe "log_out_user/1" do
+    test "logs out the user", %{conn: conn} do
+      user = user_fixture()
+
+      conn = UserAuth.log_in_user(conn, user)
+
+      conn =
+        Phoenix.ConnTest.build_conn()
+        |> Plug.Test.recycle_cookies(conn)
+        |> init_test_session(%{})
+        |> fetch_flash()
+
+      logged_out_conn = UserAuth.log_out_user(conn)
+
+      refute get_session(logged_out_conn, :user_token)
+      refute get_session(logged_out_conn, :live_socket_id)
+      assert redirected_to(logged_out_conn) == "/"
     end
   end
 end

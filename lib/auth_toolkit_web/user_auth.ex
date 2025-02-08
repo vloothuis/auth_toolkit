@@ -69,7 +69,7 @@ defmodule AuthToolkitWeb.UserAuth do
   #     end
   #
   defp renew_session(conn) do
-    vars = conn |> get_session() |> Map.take(conn.assigns.preserved_session_vars)
+    vars = conn |> get_session() |> Map.take(Access.get(conn.assigns, :preserved_session_vars, []))
 
     conn =
       conn

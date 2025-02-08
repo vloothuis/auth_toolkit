@@ -7,6 +7,8 @@ defmodule AuthToolkit.Application do
 
   @impl true
   def start(_type, _args) do
+    dbg("ASFD")
+
     children = [
       AuthToolkit.TestRepo,
       {Ecto.Migrator, repos: Application.fetch_env!(:auth_toolkit, :ecto_repos), skip: skip_migrations?()},
