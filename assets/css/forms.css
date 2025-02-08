@@ -219,21 +219,17 @@ body {
 
 .error-message,
 .invalid-feedback {
-  position: absolute;
-  top: 0;
-  right: -1rem;
   display: flex;
   align-items: center;
   color: var(--error-color);
   font-size: 0.75rem;
   background: #fff1f0;
-  padding: 0 0.75rem;
   border-radius: 4px;
   border: 1px solid var(--error-color);
   pointer-events: none;
   white-space: nowrap;
-  z-index: 10;
   box-sizing: border-box;
+  padding: 0.5rem 1rem;
 }
 
 @media (prefers-color-scheme: dark) {

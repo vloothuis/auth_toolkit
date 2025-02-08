@@ -5,7 +5,7 @@ defmodule AuthToolkitWeb.SignUpLive do
   import AuthToolkitWeb.Components
 
   alias AuthToolkit.Config
-  alias AuthToolkit.EmailBackend
+  alias AuthToolkit.Emails
   alias AuthToolkit.User
   alias Phoenix.HTML.FormField
 
@@ -151,7 +151,7 @@ defmodule AuthToolkitWeb.SignUpLive do
            |> Ecto.Changeset.apply_action(:validate),
          {:ok, user, confirmation_code} <-
            AuthToolkit.register_user(user_data, socket.assigns.remote_address) do
-      {:ok, _} = EmailBackend.get().send_account_confirmation(user, confirmation_code.code)
+      {:ok, _} = Emails.send_account_confirmation(user, confirmation_code.code)
 
       {
         :noreply,

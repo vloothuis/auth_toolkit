@@ -44,7 +44,7 @@ defmodule AuthToolkitWeb.UserConfirmationLiveTest do
       end)
 
       assert view |> element("a", "resend code") |> render_click() =~
-               "A new code has been sent."
+               "A new code has been sent"
     end
   end
 end
