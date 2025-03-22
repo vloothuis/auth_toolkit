@@ -32,7 +32,7 @@ defmodule AuthToolkit.RateLimiter.ETS do
   use GenServer
 
   @table_name :auth_toolkit_rate_limiter_attempts
-  @cleanup_interval :timer.minutes(5)
+  @cleanup_interval to_timeout(minute: 5)
 
   @doc false
   def start_table do

@@ -63,6 +63,25 @@ defmodule AuthToolkit do
   """
   def get_user!(id), do: Repo.get_repo().get!(User, id)
 
+  @doc """
+  Gets all users from the database.
+  Returns a stream of users for memory efficient iteration.
+  The stream must be consumed within a transaction.
+
+  ## Examples
+
+      iex> get_users()
+      {:ok, [%User{}, ...]}
+
+  """
+  def get_users do
+    Repo.get_repo().transaction(fn ->
+      User
+      |> Repo.get_repo().stream()
+      |> Enum.to_list()
+    end)
+  end
+
   def delete_user(%User{} = user) do
     Repo.get_repo().delete(user)
   end
@@ -158,9 +177,6 @@ defmodule AuthToolkit do
 
       {:error, reason} ->
         {:error, reason}
-
-      _ ->
-        {:error, :invalid_code}
     end
   end
 
