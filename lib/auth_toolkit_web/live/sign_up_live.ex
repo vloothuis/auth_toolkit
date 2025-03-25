@@ -7,6 +7,7 @@ defmodule AuthToolkitWeb.SignUpLive do
   alias AuthToolkit.Config
   alias AuthToolkit.Emails
   alias AuthToolkit.User
+  alias Phoenix.HTML.Form
   alias Phoenix.HTML.FormField
 
   @impl true
@@ -96,7 +97,7 @@ defmodule AuthToolkitWeb.SignUpLive do
 
   def checkbox(%{value: value} = assigns) do
     assigns =
-      assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
+      assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", value) end)
 
     ~H"""
     <div phx-feedback-for={@name}>

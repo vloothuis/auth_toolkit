@@ -41,13 +41,13 @@ defmodule AuthToolkit.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true}
       {:ecto_sql, ">= 3.6.0"},
-      {:mox, "~> 1.0", only: :test},
+      {:mox, ">= 1.2.0", only: :test},
       {:tzdata, ">= 1.1.0"},
       {:postgrex, ">= 0.0.0"},
-      {:swoosh, "~> 1.7"},
+      {:swoosh, ">= 1.7.0"},
       {:argon2_elixir, ">= 4.0.0"},
       {:gettext, ">= 0.22.0"},
-      {:mjml_eex, "~> 0.12.0"},
+      {:mjml_eex, ">= 0.12.0"},
       {:phoenix, ">= 1.7.9", override: true},
       {:phoenix_ecto, ">= 4.4.2"},
       {:phoenix_html, ">= 3.0.0"},
@@ -57,14 +57,14 @@ defmodule AuthToolkit.MixProject do
       # Dev-test
       {:mix_test_watch, ">= 1.0.0", only: [:dev, :test], runtime: false},
       {:styler, ">= 0.9.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.7.7-rc.0", only: [:dev, :test], runtime: false},
-      {:esbuild, "~> 0.8", only: [:dev, :test]},
-      {:bandit, "~> 1.5", only: [:dev, :test]},
+      {:dialyxir, ">= 1.0.0", only: [:dev, :test], runtime: false},
+      {:credo, ">= 1.7.7-rc.0", only: [:dev, :test], runtime: false},
+      {:esbuild, ">= 0.8.0", only: [:dev, :test]},
+      {:bandit, ">= 1.5.0", only: [:dev, :test]},
       # Test
       {:faker, ">= 0.17.0", only: [:test]},
       {:floki, ">= 0.30.0", only: [:test]},
-      {:mock, "~> 0.3.0", only: [:test]}
+      {:mock, ">= 0.3.0", only: [:test]}
     ]
   end
 

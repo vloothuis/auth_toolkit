@@ -52,6 +52,17 @@ defmodule AuthToolkitTest do
     end
   end
 
+  describe "get_users/0" do
+    test "returns all users" do
+      user1 = user_fixture()
+      user2 = user_fixture()
+      {:ok, users} = AuthToolkit.get_users()
+      user_ids = MapSet.new(users, & &1.id)
+      expected_ids = MapSet.new([user1.id, user2.id])
+      assert MapSet.equal?(user_ids, expected_ids)
+    end
+  end
+
   describe "get_user_by_api_token/1" do
     test "returns nil if invalid" do
       refute AuthToolkit.get_user_by_api_token(Base.encode64("bla"))

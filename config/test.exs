@@ -1,6 +1,10 @@
 import Config
 
-config :auth_toolkit, AuthToolkit.Mailer, adapter: Swoosh.Adapters.Local
+config :auth_toolkit, AuthToolkit.DefaultEmailBackend,
+  from_email: "test@example.com",
+  mailer: AuthToolkit.Mailer
+
+config :auth_toolkit, AuthToolkit.Mailer, adapter: Swoosh.Adapters.Test
 
 config :auth_toolkit, AuthToolkit.TestRepo,
   username: "postgres",
